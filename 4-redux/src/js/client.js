@@ -34,16 +34,10 @@ store.subscribe(() => {
   console.log("store changed", store.getState())
 })
 
-header('content-type: application/json; charset=utf-8');
-header("access-control-allow-origin: *");
-
 store.dispatch((dispatch) => {
   dispatch({ type: "FETCH_USER_START" })
-  //https://evening-hollows-5294.herokuapp.com/api/users.json
-  //http://rest.learncode.academy/api/wstern/users
   axios.get("https://evening-hollows-5294.herokuapp.com/api/users.json").then((response) => {
-    console.log(response);
-    dispatch({type: "RECEIVE_USERS", payload: response.users})
+    dispatch({type: "RECEIVE_USERS", payload: response.data.users })
   }).catch((e) => {
     dispatch({ type: "RECEIVE_USER_ERR", payload: e })
   })
