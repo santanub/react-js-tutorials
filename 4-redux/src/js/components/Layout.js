@@ -4,7 +4,7 @@ import Footer from "./Footer";
 import Header from "./Header";
 import { fetchUsers } from "../actions/userActions.js"
 
-export default class Layout extends React.Component {
+class Layout extends React.Component {
   constructor(props) {
     super(props);
 
@@ -12,15 +12,31 @@ export default class Layout extends React.Component {
       users: []
     }
 
-    //this.props.dispatch(fetchUsers())
+    this.props.dispatch(fetchUsers())
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps.users)
+    this.setState({
+      users: nextProps.users[1].name
+    });
   }
 
   render() {
     return (
       <div>
         <Header />
+        <p>{this.state.users}</p>
         <Footer />
       </div>
     );
   }
 }
+
+function users(state) {
+  return {
+    users: state.users
+  }
+}
+
+export default connect(users)(Layout);

@@ -12,7 +12,7 @@ const reducer = function(state= initialState, action) {
     break;
   }
   case "RECEIVE_USER_REJECTED": {
-    return {...state, fetching: false, error: action.payload }
+    return {...state, fetching: false, error: action }
     break;
   }
   case "RECEIVE_USER_FULFILLED": {
@@ -20,7 +20,7 @@ const reducer = function(state= initialState, action) {
         ...state,
       fetching: false,
       fetched: true,
-      users: action.payload.data.users
+      users: action.payload.users
     }
     break;
   }
