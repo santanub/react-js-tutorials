@@ -1,0 +1,9 @@
+.disable {
+    background: #CCCCCC;
+    color: #333333;
+}
+
+.enable {
+    background: #FFFFFF;
+    color: #333333;
+}
